@@ -1,24 +1,27 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = (env) => {
-  const isProd = env.NODE_ENV === "production";
+  const isDev = !env.production;
 
   return {
-    mode: isProd ? "production" : "development",
+    mode: isDev ? "development" : "production",
     entry: "./src/index.tsx",
-    devtool: isProd ? "source-map" : "eval-source-map",
+    devtool: isDev ? "eval-source-map" : "source-map",
     devServer: {
       contentBase: "./dist",
+      hot: true,
       port: 3001,
     },
     plugins: [
+      isDev && new ReactRefreshWebpackPlugin(),
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
         template: "./public/index.html",
       }),
-    ],
+    ].filter(Boolean),
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
@@ -29,14 +32,21 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.[jt]sx?$/,
           exclude: /node_modules/,
-          use: ["babel-loader"],
-        },
-        {
-          test: /\.tsx?$/,
-          use: "ts-loader",
-          exclude: "/node_modules/",
+          use: [
+            // ... other loaders
+            {
+              loader: require.resolve("babel-loader"),
+              options: {
+                // ... other options
+                plugins: [
+                  // ... other plugins
+                  isDev && require.resolve("react-refresh/babel"),
+                ].filter(Boolean),
+              },
+            },
+          ],
         },
         {
           test: /.css$/i,
