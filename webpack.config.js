@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = (env) => {
   const isDev = !env.production;
@@ -16,6 +17,7 @@ module.exports = (env) => {
       port: 3001,
     },
     plugins: [
+      new ForkTsCheckerWebpackPlugin(),
       isDev && new ReactRefreshWebpackPlugin(),
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
