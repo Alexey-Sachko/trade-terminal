@@ -1,8 +1,9 @@
 import React from "react";
+import { Root } from "./MarketDepth.styled";
 
 export const MarketDepth = React.memo(() => {
   return (
-    <div>
+    <Root>
       <table>
         <tbody>
           <tr>
@@ -11,7 +12,7 @@ export const MarketDepth = React.memo(() => {
           </tr>
         </tbody>
       </table>
-    </div>
+    </Root>
   );
 });
 
