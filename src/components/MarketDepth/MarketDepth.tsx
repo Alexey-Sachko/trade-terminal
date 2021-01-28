@@ -7,21 +7,32 @@ import {
   TableRow,
 } from "./MarketDepth.styled";
 
-export const MarketDepth = React.memo(() => {
+export type DepthDataItem = {
+  price: number;
+  amount: number;
+};
+
+export type Props = {
+  list: DepthDataItem[];
+};
+
+export const MarketDepth = React.memo<Props>(({ list }) => {
   return (
     <Root>
       <Table>
         <thead>
           <TableRow>
-            <TableHead>amount</TableHead>
+            <TableHead style={{ minWidth: "100px" }}>amount</TableHead>
             <TableHead>price</TableHead>
           </TableRow>
         </thead>
         <tbody>
-          <TableRow>
-            <TableCell>40,67</TableCell>
-            <TableCell>31500</TableCell>
-          </TableRow>
+          {list.map(({ amount, price }, idx) => (
+            <TableRow key={idx}>
+              <TableCell>{amount}</TableCell>
+              <TableCell>{price}</TableCell>
+            </TableRow>
+          ))}
         </tbody>
       </Table>
     </Root>

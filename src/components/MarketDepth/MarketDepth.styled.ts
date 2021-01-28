@@ -1,10 +1,11 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Root = styled.div``;
 
 export const Table = styled.table`
   border-collapse: collapse;
   border: 1px solid rgb(200, 200, 200);
+  font-size: 12px;
 `;
 
 export const TableRow = styled.tr``;
@@ -14,8 +15,9 @@ export type TableCellProps = {
 };
 
 export const TableCell = styled.td`
-  border: 1px solid rgb(190, 190, 190);
-  padding: 5px;
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 export const TableHead = styled.th`
