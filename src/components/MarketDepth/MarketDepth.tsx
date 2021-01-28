@@ -1,17 +1,29 @@
 import React from "react";
-import { Root } from "./MarketDepth.styled";
+import {
+  Root,
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "./MarketDepth.styled";
 
 export const MarketDepth = React.memo(() => {
   return (
     <Root>
-      <table>
+      <Table>
+        <thead>
+          <TableRow>
+            <TableHead>amount</TableHead>
+            <TableHead>price</TableHead>
+          </TableRow>
+        </thead>
         <tbody>
-          <tr>
-            <td>40,67</td>
-            <td>31500</td>
-          </tr>
+          <TableRow>
+            <TableCell>40,67</TableCell>
+            <TableCell>31500</TableCell>
+          </TableRow>
         </tbody>
-      </table>
+      </Table>
     </Root>
   );
 });
