@@ -15,6 +15,14 @@ module.exports = (env) => {
       contentBase: "./dist",
       hot: true,
       port: 3001,
+
+      proxy: {
+        "/api": {
+          target: "https://api.binance.com",
+          secure: false,
+          changeOrigin: true,
+        },
+      },
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin(),
