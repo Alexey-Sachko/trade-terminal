@@ -3,7 +3,7 @@ import { depthStubData } from "../../data/depthData";
 import { MarketDepthView } from "./MarketDepthView";
 
 export const MarketDepth = React.memo(() => {
-  return <MarketDepthView list={depthStubData} />;
+  return <MarketDepthView asks={depthStubData} bids={depthStubData} />;
 });
 
 MarketDepth.displayName = "MarketDepth";

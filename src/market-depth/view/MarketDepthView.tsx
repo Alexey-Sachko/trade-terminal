@@ -1,4 +1,5 @@
 import React from "react";
+import { DepthDataViewItem } from "../model/view";
 import {
   PriceCell,
   Root,
@@ -8,16 +9,12 @@ import {
   TableRow,
 } from "./MarketDepth.styled";
 
-export type DepthDataItem = {
-  price: number;
-  amount: number;
-};
-
 export type Props = {
-  list: DepthDataItem[];
+  bids: DepthDataViewItem[];
+  asks: DepthDataViewItem[];
 };
 
-export const MarketDepthView = React.memo<Props>(({ list }) => {
+export const MarketDepthView = React.memo<Props>(({ bids, asks }) => {
   return (
     <Root>
       <Table>
@@ -28,8 +25,14 @@ export const MarketDepthView = React.memo<Props>(({ list }) => {
           </TableRow>
         </thead>
         <tbody>
-          {list.map(({ amount, price }, idx) => (
-            <TableRow key={idx}>
+          {asks.map(({ amount, price }, idx) => (
+            <TableRow key={idx} style={{ background: "green" }}>
+              <TableCell>{amount}</TableCell>
+              <PriceCell>{price}</PriceCell>
+            </TableRow>
+          ))}
+          {bids.map(({ amount, price }, idx) => (
+            <TableRow key={idx} style={{ background: "red" }}>
               <TableCell>{amount}</TableCell>
               <PriceCell>{price}</PriceCell>
             </TableRow>

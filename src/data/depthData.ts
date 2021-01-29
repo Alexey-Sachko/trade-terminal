@@ -1,6 +1,6 @@
-import { DepthDataItem } from "../components/MarketDepth";
+import { DepthDataViewItem } from "../market-depth/model/view";
 
-export const depthStubData: DepthDataItem[] = [];
+export const depthStubData: DepthDataViewItem[] = [];
 
 const startPrice = 31500;
 const step = 0.01;

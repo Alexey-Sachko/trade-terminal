@@ -1,5 +1,5 @@
 import React from "react";
-import { MarketDepth } from "./components/MarketDepth";
+import { MarketDepth } from "./market-depth/view";
 
 export const App = React.memo(() => {
   return (
