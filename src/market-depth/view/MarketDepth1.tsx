@@ -4,11 +4,8 @@ import { useQuery } from "react-query";
 import { depthService } from "../../App/services";
 import { MarketDepthView } from "./MarketDepthView";
 
-export const MarketDepth = () => {
-  const { data } = useQuery("depth", () => depthService.getViewDepth(), {
-    refetchInterval: 1000,
-    refetchIntervalInBackground: true,
-  });
+export const MarketDepth1 = () => {
+  const { data } = useQuery("depth", () => depthService.getViewDepth());
 
   if (!data) {
     return null;
@@ -17,4 +14,4 @@ export const MarketDepth = () => {
   return <MarketDepthView asks={data.asks} bids={data.bids} />;
 };
 
-MarketDepth.displayName = "MarketDepth";
+MarketDepth1.displayName = "MarketDepth1";
