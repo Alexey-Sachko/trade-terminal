@@ -7,7 +7,11 @@ export const MarketDepth = observer(() => {
   const mStore = useAsObservableSource(marketDepthStore);
 
   React.useEffect(() => {
-    mStore.fetchDepth();
+    const id = setInterval(() => {
+      mStore.fetchDepth();
+    }, 1000);
+
+    return () => clearInterval(id);
   }, []);
 
   if (!mStore.data) {
