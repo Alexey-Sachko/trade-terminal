@@ -1,23 +1,20 @@
+import { observer, useAsObservableSource } from "mobx-react-lite";
 import React from "react";
-import { depthStubData } from "../../data/depthData";
-import { DepthViewData } from "../model/view";
-import { useDepthService } from "../services/ctx";
+import { marketDepthStore } from "../store/store";
 import { MarketDepthView } from "./MarketDepthView";
 
-export const MarketDepth = React.memo(() => {
-  const [data, setData] = React.useState<DepthViewData>();
-
-  const service = useDepthService();
+export const MarketDepth = observer(() => {
+  const mStore = useAsObservableSource(marketDepthStore);
 
   React.useEffect(() => {
-    setInterval(() => service.getViewDepth().then((d) => setData(d)), 1000);
+    mStore.fetchDepth();
   }, []);
 
-  if (!data) {
+  if (!mStore.data) {
     return null;
   }
 
-  return <MarketDepthView asks={data?.asks} bids={data?.bids} />;
+  return <MarketDepthView asks={mStore.data.asks} bids={mStore.data.bids} />;
 });
 
 MarketDepth.displayName = "MarketDepth";

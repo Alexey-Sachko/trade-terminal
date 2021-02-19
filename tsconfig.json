@@ -13,6 +13,8 @@
     "preserveSymlinks": false,
 
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+
+    "experimentalDecorators": true
   }
 }
