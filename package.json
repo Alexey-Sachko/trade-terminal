@@ -11,6 +11,9 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.13",
     "@babel/plugin-proposal-decorators": "^7.12.13",
+    "fp-ts": "^2.9.5",
+    "io-ts": "^2.2.14",
+    "io-ts-reporters": "^1.2.2",
     "mobx": "^6.1.7",
     "mobx-react-lite": "^3.2.0",
     "react": "^17.0.1",
