@@ -26,13 +26,13 @@ export const MarketDepthView = React.memo<Props>(({ bids, asks }) => {
         </thead>
         <tbody>
           {asks.map(({ amount, price }, idx) => (
-            <TableRow key={idx} style={{ background: "red" }}>
+            <TableRow key={idx} style={{ background: "#ff8a8a" }}>
               <TableCell>{amount}</TableCell>
               <PriceCell>{price}</PriceCell>
             </TableRow>
           ))}
           {bids.map(({ amount, price }, idx) => (
-            <TableRow key={idx} style={{ background: "green" }}>
+            <TableRow key={idx} style={{ background: "#b6ffb6" }}>
               <TableCell>{amount}</TableCell>
               <PriceCell>{price}</PriceCell>
             </TableRow>
